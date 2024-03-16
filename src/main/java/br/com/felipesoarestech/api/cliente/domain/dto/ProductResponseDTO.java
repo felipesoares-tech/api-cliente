@@ -1,9 +1,12 @@
 package br.com.felipesoarestech.api.cliente.domain.dto;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-import br.com.felipesoarestech.api.cliente.domain.model.Product;
+@Data
+@AllArgsConstructor
+public class ProductResponseDTO{
+    private Integer id;
+    private String name;
+    private Double price;
 
-public record ProductResponseDTO(String id, String name, Double price) {
-    public ProductResponseDTO(Product product){
-        this(product.getId(), product.getName(), product.getPrice());
-    }
 }

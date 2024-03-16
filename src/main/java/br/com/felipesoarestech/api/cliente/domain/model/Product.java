@@ -12,8 +12,8 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @EqualsAndHashCode.Include
     @NotNull(message = "nome é obrigatório")
     private String name;

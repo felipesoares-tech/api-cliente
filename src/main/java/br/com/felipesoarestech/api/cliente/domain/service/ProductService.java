@@ -16,6 +16,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProductService {
     @Autowired
@@ -32,7 +35,7 @@ public class ProductService {
 
         return mapearParaDTO(product);
     }
-    public ResponseEntity delete(String productID) {
+    public ResponseEntity delete(Integer productID) {
         try {
             productRepository.deleteById(productID);
             return ResponseEntity.ok(productID);
@@ -41,13 +44,22 @@ public class ProductService {
             throw new EntityNotFoundException("product not found");
 
       }
-//        catch (DataIntegrityViolationException e) {
-//            throw new LinkedEntityException("product in use !!!");
-//        }
+        catch (DataIntegrityViolationException e) {
+            throw new LinkedEntityException("product in use !!!");
+        }
     }
 
     public ProductResponseDTO mapearParaDTO(Product product) {
         ProductResponseDTO productResponseDTO = modelMapper.map(product, ProductResponseDTO.class);
         return productResponseDTO;
     }
+
+    public List<ProductResponseDTO> getAllProducts() {
+        List<Product> productA =  productRepository.findAll();
+        List<ProductResponseDTO> listaProducts = productA.stream()
+                .map(mapearParaDTO())
+                .collect(Collectors.toList());
+
+    }
+
 }

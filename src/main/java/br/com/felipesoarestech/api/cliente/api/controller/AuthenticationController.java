@@ -9,6 +9,7 @@ import br.com.felipesoarestech.api.cliente.domain.model.User;
 import br.com.felipesoarestech.api.cliente.domain.repository.UserRepository;
 import br.com.felipesoarestech.api.cliente.domain.security.TokenService;
 import br.com.felipesoarestech.api.cliente.domain.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
+@Tag(name = "Authentication", description = "tanto faz")
 @RestController
 @RequestMapping("auth")
 public class AuthenticationController {
